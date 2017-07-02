@@ -18,6 +18,7 @@ export class HomeTeacherService {
     }
     private extractData(res: Response) {
         let body = res.json();
+        console.log("Body data" + body);
         return body.data || { };
     }
     private handleError (error: Response | any) {
