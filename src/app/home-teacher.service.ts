@@ -18,8 +18,8 @@ export class HomeTeacherService {
     }
     private extractData(res: Response) {
         let body = res.json();
-        console.log("Body data" + body);
-        return body.data || { };
+        console.log("Body data" + body.data[0]);
+        return body.data[0] || { };
     }
     private handleError (error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
