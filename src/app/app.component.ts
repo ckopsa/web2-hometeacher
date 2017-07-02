@@ -17,7 +17,7 @@ export class AppComponent {
 
     ngOnInit(): void {
         this.getHomeTeacher();
-        this.title = this.homeTeacher.name;
+        this.title = this.homeTeacher.firstname;
     }
     getHomeTeacher(): void {
         this.homeTeacherSevice.getHomeTeacher()

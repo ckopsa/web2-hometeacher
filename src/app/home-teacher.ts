@@ -1,7 +1,8 @@
 export class HomeTeacher {
     id: number;
-    name: string;
+    firstname: string;
+    lastname: string;
     phoneNumber: string;
-    address: string;
+    postalAddress: string;
     companionshipId: number;
 }
