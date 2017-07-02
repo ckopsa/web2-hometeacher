@@ -17,12 +17,14 @@ export class AppComponent {
 
     ngOnInit(): void {
         this.getHomeTeacher();
-        this.title = this.homeTeacher.firstname;
     }
     getHomeTeacher(): void {
         this.homeTeacherSevice.getHomeTeacher()
-            .subscribe(homeTeacher => this.homeTeacher = homeTeacher);
-        console.log(this.homeTeacher);
+            .subscribe(homeTeacher => {
+                this.homeTeacher = homeTeacher
+                console.log(homeTeacher);
+                this.title = this.homeTeacher.firstname;
+            });
     }
 
 }

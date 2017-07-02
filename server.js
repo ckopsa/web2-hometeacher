@@ -49,7 +49,7 @@ function getHometeacherFromDB(id, callback) {
             console.error('error running query', err);
             callback(err, null);
         }
-        console.log('Hometeacher:', res.rows.toString());
+        console.log('Hometeacher:', res.rows);
         callback(null, res.rows);
     });
 }
