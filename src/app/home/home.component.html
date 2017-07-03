@@ -1,0 +1,16 @@
+<md-toolbar color="primary">
+    Home Teacher
+    <span class="app-toolbar-filler"></span>
+    <div #userPic style="height: 40px; width: 40px; border-radius: 50%; background-size: 40px 40px">
+    </div>
+    <button md-button id="logout-button" (click)="logout()">Logout</button>
+</md-toolbar>
+<div class="app-content">
+    <div style="float: left;">
+        <app-companion-container></app-companion-container>
+    </div>
+    <div style="float: left;">
+        <app-family-container></app-family-container>
+    </div>
+</div>
+

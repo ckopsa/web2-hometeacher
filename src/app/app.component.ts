@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HomeTeacherService } from './home-teacher.service';
+import { Router } from '@angular/router';
+import { HomeTeacherService } from './services/home-teacher.service';
 import { HomeTeacher } from './home-teacher';
 
 @Component({
@@ -12,19 +13,22 @@ export class AppComponent {
     title = 'app works!';
     homeTeacher: HomeTeacher;
 
-    constructor(private homeTeacherSevice: HomeTeacherService) {
+    constructor(private homeTeacherService: HomeTeacherService,
+                public router: Router) {
     }
 
     ngOnInit(): void {
-        this.getHomeTeacher();
-    }
-    getHomeTeacher(): void {
-        this.homeTeacherSevice.getHomeTeacher()
-            .subscribe(homeTeacher => {
-                this.homeTeacher = homeTeacher
-                console.log(homeTeacher);
-                this.title = this.homeTeacher.firstname;
-            });
+        this.getHomeTeacher("1");
     }
 
+    getHomeTeacher(id: String): void {
+        this.homeTeacherService.getHomeTeacher(id)
+            .subscribe(homeTeacher => {
+                if (homeTeacher) {
+                    this.homeTeacher = homeTeacher;
+                    console.log(homeTeacher);
+                    this.router.navigate(["home"]);
+                }
+            });
+    }
 }

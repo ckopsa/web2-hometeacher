@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { HomeTeacher } from './home-teacher';
+import { HomeTeacher } from '../home-teacher';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class HomeTeacherService {
-    private heroesUrl = '/hometeacher?id=1';  // URL to web API
+export class CompanionshipService {
+    private companionshipUrl = '/companionship';  // URL to web API
 
     constructor (private http: Http) {}
 
-    getHomeTeacher(): Observable<HomeTeacher> {
-        return this.http.get(this.heroesUrl)
+    getCompanions(companionshipId: String): Observable<HomeTeacher[]> {
+        return this.http.get(this.companionshipUrl + '?id=' + companionshipId)
             .map(this.extractData)
             .catch(this.handleError);
     }
     private extractData(res: Response) {
         let body = res.json();
-        console.log("Body data" + body.data[0]);
-        return body.data[0] || { };
+        console.log("Body data" + body.data);
+        return body.data || { };
     }
     private handleError (error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
@@ -34,4 +34,5 @@ export class HomeTeacherService {
         console.error(errMsg);
         return Observable.throw(errMsg);
     }
+
 }

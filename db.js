@@ -6,7 +6,7 @@ if (process.env.DATABASE_URL) {
     pg.defaults.ssl = true;
 }
 
-let connString = process.env.DATABASE_URL || "postgres://ta_user:ta_pass@localhost:5432/familyhistory";
+let connString = process.env.DATABASE_URL || "postgres://ta_user:ta_pass@localhost:5432/home_teaching";
 const { Pool } = require('pg');
 
 // console.log(connString);
