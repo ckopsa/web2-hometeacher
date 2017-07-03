@@ -17,8 +17,5 @@
             <md-option>December</md-option>
         </md-select>
     </md-card-subtitle>
-    <app-family></app-family>
-    <app-family></app-family>
-    <app-family></app-family>
-    <app-family></app-family>
+    <app-family *ngFor="let family of families" [family]="family"></app-family>
 </md-card>

@@ -1,8 +1,7 @@
 <md-card class="companion-tools">
-    <md-card-title>Kevin Kopsa</md-card-title>
-    <md-card-subtitle>Companion</md-card-subtitle>
+    <md-card-title>{{companion.firstname}} {{companion.lastname}}</md-card-title>
     <md-card-content>
-        <p>Phone: 555-555-5057</p>
-        <p>Address: 5555 Five Road, Five, CA, 55555
+        <p *ngIf="companion.phone_number">Phone: {{companion.phone_number}}</p>
+        <p *ngIf="companion.post_address">Address: {{companion.postal_address}}</p>
     </md-card-content>
 </md-card>

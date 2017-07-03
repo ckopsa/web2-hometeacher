@@ -1,8 +1,8 @@
 <md-card style="width: 35%; float: left;">
-    <md-card-title>Heafly Family</md-card-title>
+    <md-card-title>{{family.familyname}} Family</md-card-title>
     <md-card-content>
-        <p>Shawn</p>
-        <p>555-565-1575</p>
+        <p *ngIf="family.phone_number">{{family.phone_number}}</p>
+        <p *ngIf="family.postal_address">{{family.postal_address}}</p>
     </md-card-content>
     <md-card-actions>
         <md-checkbox>Taught</md-checkbox>

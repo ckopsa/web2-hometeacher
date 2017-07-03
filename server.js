@@ -23,6 +23,10 @@ app.get('/family', function(request, response) {
 	  getFamily(request, response);
 });
 
+app.get('/companionshipfamilies', function(request, response) {
+	  getCompanionshipFamilies(request, response);
+});
+
 app.get('/companionship', function(request, response) {
 	  getCompanionship(request, response);
 });
@@ -72,6 +76,28 @@ function getFamilyFromDB(id, callback) {
             callback(err, null);
         }
         console.log('Family:', res.rows);
+        callback(null, res.rows);
+    });
+}
+
+function getCompanionshipFamilies(request, response) {
+    var id = request.query.companionship_id;
+    getCompanionshipFamiliesFromDB(id, (error, result) => {
+        if (error || result == null) {
+            response.status(500).json({success: false, data: error});
+        } else {
+            response.status(200).json({success: true, data: result});
+        }
+    });
+}
+
+function getCompanionshipFamiliesFromDB(id, callback) {
+    pool.query('SELECT * FROM family WHERE companionship_id = $1::int', [id], function(err, res) {
+        if(err) {
+            console.error('error running query', err);
+            callback(err, null);
+        }
+        console.log('Families:', res.rows);
         callback(null, res.rows);
     });
 }
