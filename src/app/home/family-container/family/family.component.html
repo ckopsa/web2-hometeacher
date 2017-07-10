@@ -5,7 +5,6 @@
         <p *ngIf="family.postal_address">{{family.postal_address}}</p>
     </md-card-content>
     <md-card-actions>
-        <md-checkbox>Taught</md-checkbox>
+        <md-checkbox [checked]="report" (change)="toggleReport()">Taught</md-checkbox>
     </md-card-actions>
 </md-card>
-

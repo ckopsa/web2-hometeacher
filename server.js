@@ -35,6 +35,22 @@ app.get('/reportsForMonth', function(request, response) {
 	  getReportsForMonth(request, response);
 });
 
+app.post('/report', function(request, response) {
+	  createFamilyReportForMonth(request, response);
+});
+
+app.delete('/report', function(request, response) {
+	  deleteReport(request, response);
+});
+
+app.get('/report', function(request, response) {
+    if (request.query.family_id) {
+	      getFamilyReportForMonth(request, response);
+    } else if (request.query.companionship_id) {
+	      getCompanionshipReportsForMonth(request, response);
+    }
+});
+
 function getHometeacher(request, response) {
     var id = request.query.id;
 
@@ -168,3 +184,96 @@ function getReportForMonthFromDB(month, year, callback) {
         callback(null, res.rows);
     });
 }
+
+function getCompanionshipReportsForMonth(request, response) {
+    var companionshipId = request.query.companionship_id;
+    var month = request.query.month;
+    var year = request.query.year;
+    getCompanionshipReportForMonthFromDB(month, year, companionshipId, (error, result) => {
+        if (error || result == null) {
+            response.status(500).json({success: false, data: error});
+        } else {
+            response.status(200).json({success: true, data: result});
+        }
+    });
+}
+
+function getCompanionshipReportForMonthFromDB(month, year, companionshipId, callback) {
+    pool.query('SELECT * FROM report WHERE EXTRACT(MONTH FROM report_date) = $1::int AND EXTRACT(YEAR FROM report_date) = $2::int AND companionship_id = $3::int', [month, year, companionshipId], function(err, res) {
+        if(err) {
+            console.error('error running query', err);
+            callback(err, null);
+        }
+        console.log('Report:', res.rows);
+        callback(null, res.rows);
+    });
+}
+
+function getFamilyReportForMonth(request, response) {
+    var familyId = request.query.family_id;
+    var month = request.query.month;
+    var year = request.query.year;
+    getFamilyReportForMonthFromDB(month, year, familyId, (error, result) => {
+        if (error || result == null) {
+            response.status(500).json({success: false, data: error});
+        } else {
+            response.status(200).json({success: true, data: result});
+        }
+    });
+}
+
+function getFamilyReportForMonthFromDB(month, year, companionshipId, callback) {
+    pool.query('SELECT * FROM report WHERE EXTRACT(MONTH FROM report_date) = $1::int AND EXTRACT(YEAR FROM report_date) = $2::int AND family_id = $3::int', [month, year, companionshipId], function(err, res) {
+        if(err) {
+            console.error('error running query', err);
+            callback(err, null);
+        }
+        console.log('Report:', res.rows);
+        callback(null, res.rows);
+    });
+}
+
+function createFamilyReportForMonth(request, response) {
+    var familyId = request.body.family_id;
+    var companionshipId = request.body.companionship_id;
+    var date = request.body.report_date;
+    createFamilyReportForMonthForDB(familyId, companionshipId, date, (error, result) => {
+        if (error || result == null) {
+            response.status(500).json({success: false, data: error});
+        } else {
+            response.status(200).json({success: true, data: result});
+        }
+    });
+}
+
+function createFamilyReportForMonthForDB(familyId, companionshipId, date, callback) {
+    pool.query('INSERT INTO report(family_id, companionship_id, report_date) VALUES( $1::int, $2::int, $3::date)', [familyId, companionshipId, date], function(err, res) {
+        if(err) {
+            console.error('error running query', err);
+            callback(err, null);
+        }
+        callback(null, res);
+    });
+}
+
+function deleteReport(request, response) {
+    var id = request.query.id;
+    deleteReportFromDB(id, (error, result) => {
+        if (error || result == null) {
+            response.status(500).json({success: false, data: error});
+        } else {
+            response.status(200).json({success: true, data: result});
+        }
+    });
+}
+
+function deleteReportFromDB(id, callback) {
+    pool.query('DELETE FROM report WHERE id = $1::int', [id], function(err, res) {
+        if(err) {
+            console.error('error running query', err);
+            callback(err, null);
+        }
+        callback(null, res);
+    });
+}
+

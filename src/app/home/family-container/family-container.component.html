@@ -2,20 +2,9 @@
     <md-card-title>Families</md-card-title>
     <md-card-subtitle>
         <br/>
-        <md-select placeholder="Month">
-            <md-option>January</md-option>
-            <md-option>February</md-option>
-            <md-option>March</md-option>
-            <md-option>April</md-option>
-            <md-option>May</md-option>
-            <md-option>June</md-option>
-            <md-option>July</md-option>
-            <md-option>August</md-option>
-            <md-option>September</md-option>
-            <md-option>October</md-option>
-            <md-option>November</md-option>
-            <md-option>December</md-option>
+        <md-select (change)="updateDate()" [(ngModel)]="selectedMonth" placeholder="Select a Month">
+            <md-option *ngFor="let month of months" [value]="month.code">{{month.name}}</md-option>
         </md-select>
     </md-card-subtitle>
-    <app-family *ngFor="let family of families" [family]="family"></app-family>
+    <app-family *ngFor="let family of families" [family]="family" [date]="selectedDate"></app-family>
 </md-card>
