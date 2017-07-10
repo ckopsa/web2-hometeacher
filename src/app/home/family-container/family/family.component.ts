@@ -42,7 +42,7 @@ export class FamilyComponent implements OnInit, OnChanges {
                                         this.date.getMonth(),
                                         this.date.getFullYear())
             .subscribe(report => {
-                if (!!report) {
+                if (!!report.id) {
                     this.report = report;
                     console.log("Report: " + this.report.toString());
                 } else {
@@ -53,22 +53,17 @@ export class FamilyComponent implements OnInit, OnChanges {
     }
 
     deleteReport(id: number): void {
-                    console.log("Deleting report");
-            this.reportService
-                .deleteReport(this.report.id)
-                .subscribe(report => {
-                    if (report) {
-                        this.report = report;
-                        console.log("Report: " + this.report.toString());
-                    } else {
-                        this.report = null;
-                        console.log("Null report");
-                    }
-                });
+        console.log("Deleting report");
+        this.reportService
+            .deleteReport(this.report.id)
+            .subscribe(report => {
+                this.report = null;
+                console.log("Deleting report");
+            });
     }
 
     toggleReport() {
-        if (this.report == null) {
+        if (!!this.report && !!this.report.id) {
             this.deleteReport(this.report.id);
         } else {
             this.createReport(this.family.id, this.date.getMonth(), this.date.getFullYear());
