@@ -42,18 +42,12 @@ export class FamilyComponent implements OnInit, OnChanges {
                                         this.date.getMonth(),
                                         this.date.getFullYear())
             .subscribe(report => {
-                if (!!report.id) {
-                    this.report = report;
-                    console.log("Report: " + this.report.toString());
-                } else {
-                    this.report = null;
-                    console.log("Null report");
-                }
+                console.log("Creating Report");
+                this.getReport(id,month,year);
             });
     }
 
     deleteReport(id: number): void {
-        console.log("Deleting report");
         this.reportService
             .deleteReport(this.report.id)
             .subscribe(report => {

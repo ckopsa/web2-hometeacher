@@ -15,6 +15,10 @@ var server = app.listen(process.env.PORT || 8080, function() {
     console.log('Node app is running on port', port);
 });
 
+app.get('/home', function(request, response) {
+    response.redirect('/index.html');
+});
+
 app.get('/hometeacher', function(request, response) {
 	  getHometeacher(request, response);
 });
