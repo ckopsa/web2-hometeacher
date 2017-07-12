@@ -1,4 +1,4 @@
-<md-card style="width: 60%; height: 540px;">
+<md-card style="width: 90%;">
     <md-card-title>Families</md-card-title>
     <md-card-subtitle>
         <br/>
@@ -6,5 +6,7 @@
             <md-option *ngFor="let month of months" [value]="month.code">{{month.name}}</md-option>
         </md-select>
     </md-card-subtitle>
-    <app-family *ngFor="let family of families" [family]="family" [date]="selectedDate"></app-family>
+    <md-card-content style="height: 540px; overflow-y: auto">
+        <app-family *ngFor="let family of families" [family]="family" [date]="selectedDate"></app-family>
+    </md-card-content>
 </md-card>
