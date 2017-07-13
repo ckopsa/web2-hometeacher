@@ -10,7 +10,6 @@ import { HomeTeacher } from './home-teacher';
     providers: [HomeTeacherService]
 })
 export class AppComponent {
-    title = 'app works!';
     homeTeacher: HomeTeacher;
 
     constructor(private homeTeacherService: HomeTeacherService,
@@ -18,7 +17,7 @@ export class AppComponent {
     }
 
     ngOnInit(): void {
-        this.getHomeTeacher("1");
+        //this.getHomeTeacher("1");
     }
 
     getHomeTeacher(id: String): void {
