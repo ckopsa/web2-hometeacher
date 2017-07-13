@@ -19,20 +19,7 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.authservice.login({
-            email: this.email,
-            password: this.password,
-        },
-            {
-                provider: AuthProviders.Password,
-                method: AuthMethods.Password,
-            }).then(
-            response => {
-                this.router.navigate(['home'])
-            },
-            error => {
-                this.loading = false;
-            });
+        this.authservice.login(this.email, this.password);
     }
 
 

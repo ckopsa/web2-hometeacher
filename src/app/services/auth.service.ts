@@ -11,8 +11,8 @@ export class AuthService {
 
     constructor (private http: Http) {}
 
-    login(companionshipId: String): Observable<HomeTeacher[]> {
-        return this.http.get(this.companionshipUrl + '?id=' + companionshipId)
+    login(email: String, password: String): Observable<HomeTeacher[]> {
+        return this.http.get(this.baseUrl + '?id=')
             .map(this.extractData)
             .catch(this.handleError);
     }
