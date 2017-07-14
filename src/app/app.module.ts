@@ -15,10 +15,13 @@ import { CompanionContainerComponent } from './home/companion-container/companio
 import { FamilyComponent } from './home/family-container/family/family.component';
 import { CompanionComponent } from './home/companion-container/companion/companion.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
+import { OverviewComponent } from './admin/overview/overview.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'admin', component: AdminComponent },
 ];
 
 @NgModule({
@@ -29,7 +32,9 @@ const appRoutes: Routes = [
         CompanionContainerComponent,
         FamilyComponent,
         CompanionComponent,
-        LoginComponent
+        LoginComponent,
+        AdminComponent,
+        OverviewComponent
     ],
     imports: [
         BrowserModule,

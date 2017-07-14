@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 export class HomeTeacherService {
     private homeTeacherUrl = '/hometeacher';  // URL to web API
 
-    constructor (private http: Http) {}
+    constructor(private http: Http) { }
 
     getHomeTeacher(homeTeacherId: String): Observable<HomeTeacher> {
         return this.http.get(this.homeTeacherUrl + '?id=' + homeTeacherId)
@@ -19,9 +19,9 @@ export class HomeTeacherService {
     private extractData(res: Response) {
         let body = res.json();
         console.log("Body data" + body.data[0]);
-        return body.data[0] || { };
+        return body.data[0] || {};
     }
-    private handleError (error: Response | any) {
+    private handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {

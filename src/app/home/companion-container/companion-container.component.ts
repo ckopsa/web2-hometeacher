@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HomeTeacher } from '../../home-teacher';
 import { CompanionshipService } from '../../services/companionship.service';
 
@@ -6,22 +6,23 @@ import { CompanionshipService } from '../../services/companionship.service';
     selector: 'app-companion-container',
     templateUrl: './companion-container.component.html',
     styleUrls: ['./companion-container.component.css'],
-    providers: [ CompanionshipService ]
+    providers: [CompanionshipService]
 })
 export class CompanionContainerComponent implements OnInit {
+    @Input() hometeacher: HomeTeacher;
     companions: HomeTeacher[];
     constructor(private homeTeacherService: CompanionshipService) {
     }
 
     ngOnInit() {
-        this.getCompanions("1");
+        this.getCompanions(this.hometeacher.id.toString());
     }
 
     getCompanions(id: String): void {
         this.homeTeacherService.getCompanions(id)
             .subscribe(companions => {
                 if (companions) {
-                    this.companions = companions.filter(companion => companion.id != 1);
+                    this.companions = companions.filter(companion => companion.id != this.hometeacher.id);
                     console.log(this.companions);
                 }
             });

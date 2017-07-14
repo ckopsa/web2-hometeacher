@@ -9,6 +9,8 @@ id SERIAL PRIMARY KEY NOT NULL
 CREATE TABLE hometeacher
 (
 id SERIAL PRIMARY KEY NOT NULL,
+username VARCHAR(100) NOT NULL UNIQUE,
+password VARCHAR(100) NOT NULL,
 firstname VARCHAR(100) NOT NULL,
 lastname VARCHAR(100) NOT NULL,
 phone_number VARCHAR(20),
@@ -36,7 +38,7 @@ companionship_id INT REFERENCES companionship (id) NOT NULL
 INSERT INTO companionship(id) VALUES
 (1);
 
-INSERT INTO hometeacher(firstname, lastname, phone_number, postal_address, companionship_id) VALUES
+INSERT INTO hometeacher(username, password, firstname, lastname, phone_number, postal_address, companionship_id) VALUES
 ('Colton', 'Kopsa', '555-555-5551', '1234 Fake Road, Rexburg, ID', 1),
 ('Angel', 'Gonzalez', '555-555-5552', '114 Wrong Way, Rexburg, ID', 1),
 ('Milo', 'de Leon', '555-555-5553', '1471 Lois Lane, Rexburg, ID', 1);

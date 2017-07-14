@@ -4,17 +4,30 @@ import { HomeTeacher } from '../home-teacher';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class AuthService {
     private baseUrl = '/auth';  // URL to web API
-
+    redirectUrl: string;
+    isLoggedIn = false;
     constructor (private http: Http) {}
 
-    login(email: String, password: String): Observable<HomeTeacher[]> {
-        return this.http.get(this.baseUrl + '?id=')
+    login(email: String, password: String): Observable<Boolean> {
+        return Observable.of(true).delay(1000).do(homeTeacher => {
+            this.isLoggedIn = true;
+        });
+
+        /* return this.http.get(this.baseUrl + '?id=')
             .map(this.extractData)
             .catch(this.handleError);
+            */
+    }
+
+    logout(): void {
+        this.isLoggedIn = false;
     }
     private extractData(res: Response) {
         let body = res.json();

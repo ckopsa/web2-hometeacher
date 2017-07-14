@@ -1,36 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Family } from '../../family';
 import { FamilyService } from '../../services/family.service';
+import { HomeTeacher } from '../../home-teacher';
 
 @Component({
     selector: 'app-family-container',
     templateUrl: './family-container.component.html',
     styleUrls: ['./family-container.component.css'],
-    providers: [ FamilyService ]
+    providers: [FamilyService]
 })
 export class FamilyContainerComponent implements OnInit {
+    @Input() hometeacher: HomeTeacher;
     families: Family[];
     selectedDate = new Date();
     selectedMonth = this.selectedDate.getMonth();
     months = [
-        {code: 0, name: 'January'},
-        {code: 1, name: 'February'},
-        {code: 2, name: 'March'},
-        {code: 3, name: 'April'},
-        {code: 4, name: 'May'},
-        {code: 5, name: 'June'},
-        {code: 6, name: 'July'},
-        {code: 7, name: 'August'},
-        {code: 8, name: 'September'},
-        {code: 9, name: 'October'},
-        {code: 10, name: 'November'},
-        {code: 11, name: 'December'}
+        { code: 0, name: 'January' },
+        { code: 1, name: 'February' },
+        { code: 2, name: 'March' },
+        { code: 3, name: 'April' },
+        { code: 4, name: 'May' },
+        { code: 5, name: 'June' },
+        { code: 6, name: 'July' },
+        { code: 7, name: 'August' },
+        { code: 8, name: 'September' },
+        { code: 9, name: 'October' },
+        { code: 10, name: 'November' },
+        { code: 11, name: 'December' }
     ];
     constructor(private familyService: FamilyService) {
     }
 
     ngOnInit() {
-        this.getFamilies("1");
+        this.getFamilies(this.hometeacher.id.toString());
     }
 
     getFamilies(id: String): void {
