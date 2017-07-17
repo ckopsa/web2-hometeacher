@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'admin', component: AdminComponent, /*canActivate: [AuthGuard],*/ },
     { path: 'home', component: HomeComponent, resolve: {hometeacher: HomeTeacherResolverService} },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 
