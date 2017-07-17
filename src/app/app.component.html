@@ -1,8 +1,7 @@
 <md-toolbar color="primary">
     <a md-button routerLink="/home">Home Teacher</a>
-    <a md-raised-button color="accent" routerLink="/admin" routerLinkActive="active">Admin</a>
+    <a *ngIf="auth.user" md-raised-button color="accent" routerLink="/admin" routerLinkActive="active">Admin</a>
     <span class="app-toolbar-filler"></span>
-    {{hometeacher.firstname}}
     <div #userPic style="height: 40px; width: 40px; border-radius: 50%; background-size: 40px 40px">
     </div>
     <button md-button id="logout-button" (click)="logout()">Logout</button>

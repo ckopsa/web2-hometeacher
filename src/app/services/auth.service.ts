@@ -10,8 +10,7 @@ import 'rxjs/add/operator/delay';
 @Injectable()
 export class AuthService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
-    isLoggedIn = false;
-    user = null;
+    user: HomeTeacher = null;
 
     // store the URL so we can redirect after logging in
     redirectUrl: string;
@@ -33,7 +32,6 @@ export class AuthService {
     }
 
     logout(): void {
-        this.isLoggedIn = false;
         this.user = null;
         sessionStorage.setItem('username', null);
         sessionStorage.setItem('password', null);
@@ -41,10 +39,11 @@ export class AuthService {
 
     private extractData(res: Response) {
         let body = res.json();
-        if (body.data[0].id)
-            this.isLoggedIn = true;
+        this.user = body.data[0];
+        console.log("Username: " + this.user.firstname);
         return body.data[0] || {};
     }
+
     private handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;

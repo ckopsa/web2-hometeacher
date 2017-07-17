@@ -10,6 +10,7 @@ import { CompanionshipService } from '../../services/companionship.service';
 })
 export class CompanionContainerComponent implements OnInit {
     @Input() hometeacher: HomeTeacher;
+    @Input() companionshipId: number;
     companions: HomeTeacher[];
     constructor(private homeTeacherService: CompanionshipService) {
     }
@@ -22,7 +23,11 @@ export class CompanionContainerComponent implements OnInit {
         this.homeTeacherService.getCompanions(id)
             .subscribe(companions => {
                 if (companions) {
-                    this.companions = companions.filter(companion => companion.id != this.hometeacher.id);
+                    if (this.hometeacher) {
+                        this.companions = companions.filter(companion => companion.id != this.hometeacher.id);
+                    } else {
+                        this.companions = companions;
+                    }
                     console.log(this.companions);
                 }
             });

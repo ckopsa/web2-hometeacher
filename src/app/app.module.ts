@@ -20,6 +20,7 @@ import { FamilyContainerComponent } from './home/family-container/family-contain
 import { CompanionContainerComponent } from './home/companion-container/companion-container.component';
 import { FamilyComponent } from './home/family-container/family/family.component';
 import { CompanionComponent } from './home/companion-container/companion/companion.component';
+import { CompanionshipContainerComponent } from './admin/companionship-container/companionship-container.component';
 
 //import { HomeModule } from './home/home.module';
 
@@ -35,6 +36,7 @@ import { CompanionComponent } from './home/companion-container/companion/compani
         CompanionContainerComponent,
         FamilyComponent,
         CompanionComponent,
+        CompanionshipContainerComponent,
     ],
     imports: [
         AppRoutingModule,

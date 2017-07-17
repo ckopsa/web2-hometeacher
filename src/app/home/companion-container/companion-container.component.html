@@ -1,4 +1,5 @@
 <md-card style="width: 300px;">
-    <md-card-title>Companion(s)</md-card-title>
+    <md-card-title *ngIf="companions.length > 1">Companions</md-card-title>
+    <md-card-title *ngIf="companions.length == 1">Companion</md-card-title>
     <app-companion *ngFor="let companion of companions" [companion]="companion"></app-companion>
 </md-card>

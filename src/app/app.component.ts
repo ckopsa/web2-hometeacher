@@ -10,8 +10,6 @@ import { HomeTeacher } from './home-teacher';
     providers: [ AuthService ]
 })
 export class AppComponent {
-    homeTeacher: HomeTeacher;
-
     constructor(private auth: AuthService,
                 public router: Router) {
     }
@@ -21,5 +19,6 @@ export class AppComponent {
 
     logout(): void {
         this.auth.logout();
+        this.router.navigate(['/login']);
     }
 }
