@@ -1,0 +1,13 @@
+<md-card style="width: 90%; margin: auto;">
+    <md-card-title>Month Overview</md-card-title>
+    <md-card-subtitle>
+        <br/>
+        <md-select (change)="updateDate()" [(ngModel)]="selectedMonth" placeholder="Select a Month">
+            <md-option *ngFor="let month of months" [value]="month.code">{{month.name}}</md-option>
+        </md-select>
+    </md-card-subtitle>
+    <md-card-content>
+    </md-card-content>
+    <md-card-actions>
+    </md-card-actions>
+</md-card>

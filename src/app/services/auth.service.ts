@@ -21,7 +21,7 @@ export class AuthService {
         });
 
         /* return this.http.get(this.baseUrl + '?id=')
-            .map(this.extractData)
+            .map(this.extractData
             .catch(this.handleError);
             */
     }

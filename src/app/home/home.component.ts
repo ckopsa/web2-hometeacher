@@ -1,6 +1,8 @@
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { HomeTeacher } from '../home-teacher';
 import { HomeTeacherService } from '../services/home-teacher.service';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'app-home',
@@ -10,14 +12,17 @@ import { HomeTeacherService } from '../services/home-teacher.service';
 })
 export class HomeComponent implements OnInit {
     hometeacher: HomeTeacher;
-    constructor(private homeTeacherService: HomeTeacherService) {
+    constructor(
+        private homeTeacherService: HomeTeacherService,
+        private route: ActivatedRoute,
+        private router: Router,
+    ) {
     }
 
     ngOnInit() {
-        this.homeTeacherService.getHomeTeacher("1").subscribe(hometeacher => {
-            if (hometeacher) {
-                this.hometeacher = hometeacher;
-            }
-        });
+        this.route.paramMap
+            .switchMap((params: ParamMap) =>
+                       this.homeTeacherService.getHomeTeacher(params.get('id')))
+            .subscribe((hero: HomeTeacher) => this.hometeacher = hero);
     }
 }
