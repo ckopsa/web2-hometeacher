@@ -32,7 +32,7 @@ export class FamilyContainerComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getFamilies(this.hometeacher.id.toString());
+        this.getFamilies(this.hometeacher.companionship_id.toString());
     }
 
     getFamilies(id: String): void {

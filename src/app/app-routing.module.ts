@@ -13,7 +13,7 @@ import { HomeTeacherService } from './services/home-teacher.service';
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], },
-    { path: 'home/:id', component: HomeComponent, resolve: {hometeacher: HomeTeacherResolverService} },
+    { path: 'home', component: HomeComponent, resolve: {hometeacher: HomeTeacherResolverService} },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

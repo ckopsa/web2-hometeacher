@@ -15,7 +15,7 @@ export class CompanionContainerComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getCompanions(this.hometeacher.id.toString());
+        this.getCompanions(this.hometeacher.companionship_id.toString());
     }
 
     getCompanions(id: String): void {

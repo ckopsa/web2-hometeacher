@@ -3,7 +3,7 @@ import {
     Router, Resolve, RouterStateSnapshot,
     ActivatedRouteSnapshot
 } from '@angular/router';
-import { HomeTeacherService } from './home-teacher.service';
+import { AuthService } from './auth.service';
 import { HomeTeacher } from '../home-teacher';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/first';
@@ -11,11 +11,13 @@ import 'rxjs/add/operator/first';
 @Injectable()
 export class HomeTeacherResolverService {
 
-    constructor(private hs: HomeTeacherService, private router: Router) { }
+    constructor(private hs: AuthService, private router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<HomeTeacher> {
-        let id = route.paramMap.get('id');
-        return this.hs.getHomeTeacher(id).map(hometeacher => {
+        let username = sessionStorage.getItem('username');
+        let password = sessionStorage.getItem('password');
+        console.log("Username: " + username);
+        return this.hs.login(username, password).map(hometeacher => {
             if (hometeacher) {
                 console.log("hometeacher resolved");
                 console.log("First name: " + hometeacher.firstname);
