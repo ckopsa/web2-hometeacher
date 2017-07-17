@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.authService.login(this.email, this.password).subscribe(result => {
+        this.authService.login().subscribe(result => {
             if (this.authService.isLoggedIn) {
                 // Get the redirect URL from our auth service
                 // If no redirect has been set, use the default
